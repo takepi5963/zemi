@@ -32,14 +32,23 @@ class TimeTableController extends Controller
         
         $start_time=$request->start_time;
         $end_time=$request->end_time;
+        // echo($time_table->max('id'));
+        // print_r($start_time);
 
         for($cnt=1;$cnt<=$request->time_num;$cnt++){
-            echo("echo");
+            echo("test");
+            for($week=1;$week<=7;$week++){
+                $time_details=new time_details;
+                $time_details->time_id=$time_table->max('id');
+                $time_details->time_no=$cnt;
+                $time_details->week=$week;
+                $time_details->start_time=$start_time[$cnt-1];
+                $time_details->end_time=$end_time[$cnt-1];
+                $time_details->club_id=null;
+                $time_details->save();
+            }
         }
 
-        print_r($request->all());
-
-
-        // return redirect('/home');
+        return redirect('/time_table');
     } 
 }

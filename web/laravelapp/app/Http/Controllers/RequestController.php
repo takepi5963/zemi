@@ -16,16 +16,21 @@ class RequestController extends Controller
         $value=null;
         //ここのクラブIDを動的なものとする
         $club_id=1;
-        if(isset($request->time_id)){
-            $time_table = time_table::_id($request->time_id);
-        }else{
-            $date=date("Y/m/d");
-            $time_table = time_table::_start_date($date)->first();
+        try{
+            if(isset($request->time_id)){
+                $time_table = time_table::_id($request->time_id);
+            }else{
+                $date=date("Y/m/d");
+                $time_table = time_table::_start_date($date)->first();
+            }
+            $time_details = time_details::_date($time_table->id)->get();
+            $request_table = new request_table;
+            // print_r($request_table);
+            return view('request',compact('time_table','time_details','request_table','club_id'));
+        }catch(\Exception $e){
+            //時間割データがなかった場合
+            return view('not_found_time_table');
         }
-        $time_details = time_details::_date($time_table->id)->get();
-        $request_table = new request_table;
-        // print_r($request_table);
-        return view('request',compact('time_table','time_details','request_table','club_id'));
     }
 
     public function request_insert(Request $request){

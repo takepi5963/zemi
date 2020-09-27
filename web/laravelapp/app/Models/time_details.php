@@ -9,6 +9,7 @@ class time_details extends Model
 {
     //
     protected $table = 'time_details';
+    public $timestamps = false;
 
     public static $rules = array(
         'time_num'=>'required|integer',

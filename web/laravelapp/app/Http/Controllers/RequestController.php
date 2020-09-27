@@ -29,7 +29,8 @@ class RequestController extends Controller
             return view('requests.request',compact('time_table','time_details','request_table','club_id'));
         }catch(\Exception $e){
             //時間割データがなかった場合
-            return view('not_found_time_table');
+            $title='希望申し込み';
+            return view('not_found_time_table',compact('title'));
         }
     }
 

@@ -1,4 +1,5 @@
 @extends('layouts.tmp')
-@section('title','時間割データが見つかりません')
-@section('main') 
+@section('title',$title)
+@section('main')
+時間割データが存在しません
 @endsection

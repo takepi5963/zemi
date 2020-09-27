@@ -14,7 +14,7 @@ class ClubController extends Controller
     public function club_view(){
         $club=club::all();
         // print_r($club);
-        return view('club',compact('club'));
+        return view('clubs.club',compact('club'));
     }
     public function club_insert(Request $request){
         // print_r($request['student_no']);

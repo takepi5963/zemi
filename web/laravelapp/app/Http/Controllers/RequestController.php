@@ -26,7 +26,7 @@ class RequestController extends Controller
             $time_details = time_details::_date($time_table->id)->get();
             $request_table = new request_table;
             // print_r($request_table);
-            return view('request',compact('time_table','time_details','request_table','club_id'));
+            return view('requests.request',compact('time_table','time_details','request_table','club_id'));
         }catch(\Exception $e){
             //時間割データがなかった場合
             return view('not_found_time_table');

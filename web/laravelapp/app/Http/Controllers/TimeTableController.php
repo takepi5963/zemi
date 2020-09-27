@@ -13,10 +13,10 @@ class TimeTableController extends Controller
     //
     public function time_table_view(Request $request){
         $time_table= new time_table;
-        return view('time_table', compact('time_table'));
+        return view('time_tables.time_table', compact('time_table'));
     } 
     public function time_table_details(Request $request){
-        return view('time_table_create');
+        return view('time_tables.time_table_create');
     } 
 
     public function time_table_create(Request $request){

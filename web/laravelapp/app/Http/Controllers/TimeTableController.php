@@ -15,7 +15,7 @@ class TimeTableController extends Controller
         $time_table= new time_table;
         return view('time_tables.time_table', compact('time_table'));
     } 
-    public function time_table_details(Request $request){
+    public function time_table_create_details(Request $request){
         return view('time_tables.time_table_create');
     } 
 
@@ -36,7 +36,6 @@ class TimeTableController extends Controller
         // print_r($start_time);
 
         for($cnt=1;$cnt<=$request->time_num;$cnt++){
-            echo("test");
             for($week=1;$week<=7;$week++){
                 $time_details=new time_details;
                 $time_details->time_id=$time_table->max('id');
@@ -50,5 +49,13 @@ class TimeTableController extends Controller
         }
 
         return redirect('/time_table');
-    } 
+    }
+    public function time_table_details(Request $request){
+        $time_table=time_table::where('id',$request->time_id)->first();
+        $time_details=time_details::_date($request->time_id)->get();
+        $request_table=request_table::where('time_id',$request->time_id)->first();
+        if($request_table==null){   $request_table=new request_table;   }
+
+        return view('time_tables.time_table_details',compact('time_table','time_details','request_table')); 
+    }
 }

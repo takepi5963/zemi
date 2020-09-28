@@ -18,8 +18,8 @@
         <td class="text-nowrap">{{$time_table_one->start_day}}</td>
         <td class="text-nowrap">{{$time_table_one->end_day}}</td>
         <td class="text-nowrap">
-            <form action="#">
-                <input type="hidden" value="{{$time_table_one->id}}">
+            <form action="/time_table/details" method="get">
+                <input type="hidden" name="time_id" value="{{$time_table_one->id}}">
                 <input type="submit" value="詳細" name="" id="">
             </form>
         </td>

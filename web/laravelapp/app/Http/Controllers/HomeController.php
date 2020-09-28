@@ -17,6 +17,9 @@ class HomeController extends Controller
             }else{
                 $date=date("Y/m/d");
                 $time_table = time_table::_date($date)->first();
+                if(!(isset($time_table->id))){
+                    $time_table = time_table::first();
+                }
             }
             $time_details = time_details::_date($time_table->id)->get();
 

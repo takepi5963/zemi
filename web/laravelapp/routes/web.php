@@ -20,7 +20,8 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@home_view');
 
 Route::get('/time_table','TimeTableController@time_table_view');
-Route::get('/time_table/create','TimeTableController@time_table_details');
+Route::get('/time_table/details','TimeTableController@time_table_details');
+Route::get('/time_table/create','TimeTableController@time_table_create_details');
 Route::post('/time_table/create','TimeTableController@time_table_create');
 
 Route::get('/request', 'RequestController@request_view');

@@ -58,4 +58,19 @@ class TimeTableController extends Controller
 
         return view('time_tables.time_table_details',compact('time_table','time_details','request_table')); 
     }
+    
+    public function time_table_details_update(Request $request){
+        // $time_table=time_table::where('id',$request->time_id)->first();
+        // $time_details=time_details::_date($request->time_id)->get();
+        // $request_table=request_table::where('time_id',$request->time_id)->first();
+        // if($request_table==null){   $request_table=new request_table;   }
+        // print_r($request->time_id);
+        foreach($request->time_details as $time_no=>$time_details_day){
+            foreach($time_details_day as $week=>$time_detail){
+                $new=array('club_id'=>$time_detail);
+                $club = time_details::where("time_id",$request->time_id)->where("time_no",$time_no)->where("week",$week)->update($new);
+            }
+        }
+        return redirect('/time_table');
+    }
 }

@@ -3,7 +3,9 @@
 @section('main')
 <p>期間 {{$time_table->start_day}} ～ {{$time_table->end_day}}</p>
 
-<form action="">
+<form action="/time_table/details" method="post">
+    <input type="hidden" name="time_id" value="{{$time_table->id}}">
+    @csrf
     <table class="table table-bordered" style="table-layout: fixed;">
         <thead>
             <tr class="table-secondary">
@@ -27,8 +29,11 @@
                 </th>
                 @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
                 <td class="text-nowrap">
-                    @foreach($request_table->where("time_no",$time_cnt)->where("week",$week_cnt)->get() as $request_record)
-                    <input type="radio" name="">aa
+                    @foreach($request_table->where("time_id",$time_table->id)->where("time_no",$time_cnt)->where("week",$week_cnt)->get() as $request_record)
+                    <p>
+                        <input type="radio" name="time_details[{{$time_cnt}}][{{$week_cnt }}]" value="{{$request_record->club_id}}">
+                        <label for="time_details[{{$time_cnt}}][{{$week_cnt }}]">{{$time_details[0]->club_name($request_record->club_id)}}</label>
+                    </p>
                     @endforeach
                 </td>          
                 @endfor  
@@ -36,6 +41,7 @@
             @endfor
         </tbody>
     </table>
+    <input type="text" class="text-left border" name="message" value="{{ $time_table->message }}">
+    <input type="submit">
 </form>
-    <p class="text-left border">{{ $time_table->message }}</p>                 
     @endsection

@@ -3,8 +3,6 @@ drop table time_details;
 drop table club;
 drop table time_table;
 
-
-
 create table time_table (
     id int auto_increment primary key,
     time_num int,

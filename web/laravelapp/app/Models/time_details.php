@@ -9,10 +9,13 @@ class time_details extends Model
 {
     //
     protected $table = 'time_details';
+    public $incrementing = false;
     public $timestamps = false;
+    protected $guarded = [];
+    protected $primaryKey = ['time_id','time_no','week'];
 
     public static $rules = array(
-        'time_num'=>'required|integer',
+        'time_no'=>'required|integer',
         'start_day'=>'date|required',
         'end_day'=>'date|required',
         'message'=>'string|required'

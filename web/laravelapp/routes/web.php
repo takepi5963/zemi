@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@home_view');
 
 Route::get('/time_table','TimeTableController@time_table_view');
 Route::get('/time_table/details','TimeTableController@time_table_details');
+Route::post('/time_table/details','TimeTableController@time_table_details_update');
 Route::get('/time_table/create','TimeTableController@time_table_create_details');
 Route::post('/time_table/create','TimeTableController@time_table_create');
 

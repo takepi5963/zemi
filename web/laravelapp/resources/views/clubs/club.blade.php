@@ -1,6 +1,8 @@
 @extends('layouts.tmp')
-@section('title','サークル管理')
 @section('main')
+
+<main>
+<h1>サークル管理</h1>
 <form action="/club/create" method="get">
 <table class="table-bordered">
     <tr><th>サークル名</th><th><input name="club_name" type="text"></th></tr>
@@ -9,15 +11,15 @@
 </table>
 </form>
 <hr>
-<ul>
+<table class="club">
     @foreach($club as $club_one)
-    <li>
     <form action="/club/details" method="get">
-        {{$club_one->club_name}}<input type="submit" value="設定">
+        <tr><td>{{$club_one->club_name}}</td>
+        <td><input type="submit" value="設定"></td></tr>
         <input type="hidden" name="id" value="{{$club_one->id}}">
     </form>
-    </li>
         @endforeach
-</ul>
+</table>
+</main>
 
 @endsection

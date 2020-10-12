@@ -64,13 +64,28 @@ class TimeTableController extends Controller
         // $time_details=time_details::_date($request->time_id)->get();
         // $request_table=request_table::where('time_id',$request->time_id)->first();
         // if($request_table==null){   $request_table=new request_table;   }
-        // print_r($request->time_id);
-        foreach($request->time_details as $time_no=>$time_details_day){
-            foreach($time_details_day as $week=>$time_detail){
-                $new=array('club_id'=>$time_detail);
-                $club = time_details::where("time_id",$request->time_id)->where("time_no",$time_no)->where("week",$week)->update($new);
+        print_r($request->start_time_h);
+        try{
+            foreach($request->time_details as $time_no=>$time_details_day){
+                foreach($time_details_day as $week=>$time_detail){
+                    $new=array('club_id'=>$time_detail);
+                    $club = time_details::where("time_id",$request->time_id)->where("time_no",$time_no)->where("week",$week)->update($new);
+                }
+            }
+        }catch(\Exception $e){
+
+        }
+
+        for($time_no=1;$time_no<=$request->time_num;$time_no++){
+            for($week=1;$week<=7;$week++){
+                // print_r($request->start_time[$time_no-1]);
+                // print_r($request->end_time[$time_no-1]);
+                $new=array('start_time'=>$request->start_time_h[$time_no-1].':'.$request->start_time_m[$time_no-1],'end_time'=>$request->end_time_h[$time_no-1].':'.$request->end_time_h[$time_no-1]);
+                print_r($new);
+                time_details::where("time_id",$request->time_id)->where("time_no",$time_no)->where("week",$week)->update($new);
             }
         }
+        time_table::where("id",$request->time_id)->first()->update(['message'=>$request->message]);
         return redirect('/time_table');
     }
 }

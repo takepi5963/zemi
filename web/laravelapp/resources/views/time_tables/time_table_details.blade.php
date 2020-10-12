@@ -23,9 +23,51 @@
             @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
             <tr>
                 <th scope="row">
-                    {{$time_details->where("time_no",$time_cnt)->first()->start_time}}
-                    ～ 
-                    {{$time_details->where("time_no",$time_cnt)->first()->end_time}}
+                <select name="start_time_h[]" id="selectedate-h">
+                <?php
+                $start_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[0];
+                $start_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[1];
+                ?>
+                    @for($h=0;$h<24;$h++)
+                        @if($h==$start_h)
+                        <option selected value="{{$h}}">{{$h}}</option>
+                        @else
+                        <option value="{{$h}}">{{$h}}</option>
+                        @endif
+                    @endfor
+                </select>
+                <select name="start_time_m[]" id="selectedate-m">
+                    @for($m=0;$m<60;$m++)
+                        @if($m==$start_m)
+                            <option selected value="{{$m}}">{{$m}}</option>
+                        @else
+                            <option value="{{$m}}">{{$m}}</option>
+                        @endif
+                    @endfor
+                </select>
+                    ～
+                <select name="end_time_h[]" id="selectedate-h">
+                <?php
+                $end_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[0];
+                $end_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[1];
+                ?>
+                    @for($h=0;$h<24;$h++)
+                        @if($h==$end_h)
+                        <option selected value="{{$h}}">{{$h}}</option>
+                        @else
+                        <option value="{{$h}}">{{$h}}</option>
+                        @endif
+                    @endfor
+                </select>
+                <select name="end_time_m[]" id="selectedate-m">
+                    @for($m=0;$m<60;$m++)
+                        @if($m==$end_m)
+                            <option selected value="{{$m}}">{{$m}}</option>
+                        @else
+                            <option value="{{$m}}">{{$m}}</option>
+                        @endif
+                    @endfor
+                </select>
                 </th>
                 @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
                 <td class="text-nowrap">
@@ -41,7 +83,8 @@
             @endfor
         </tbody>
     </table>
-    <input type="text" class="text-left border" name="message" value="{{ $time_table->message }}">
+    <input type="hidden" name="time_num" value="{{ $time_table->time_num }}">
+    <input type="text" class="text-left border" name="message" value="{{ $time_table->message }}" maxlength="10000">
     <input type="submit">
 </form>
     @endsection

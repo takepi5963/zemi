@@ -7,13 +7,13 @@ use App\Models\time_table;
 use App\Models\club;
 use App\Models\time_details;
 use App\Models\request_table;
+use Illuminate\Http\Response; //追記
 
 class ClubController extends Controller
 {
     //
-    public function club_view(){
+    public function club_view(Request $request,Response $response){
         $club=club::all();
-        // print_r($club);
         return view('clubs.club',compact('club'));
     }
     public function club_insert(Request $request){

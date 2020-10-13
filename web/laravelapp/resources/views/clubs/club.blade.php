@@ -1,7 +1,6 @@
 @extends('layouts.tmp')
 @section('main')
 
-<main>
 <h1>サークル管理</h1>
 <form action="/club/create" method="get">
 <table class="table-bordered">
@@ -20,6 +19,4 @@
     </form>
         @endforeach
 </table>
-</main>
-
 @endsection

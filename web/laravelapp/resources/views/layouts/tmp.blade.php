@@ -38,7 +38,9 @@
         </nav>
 
     <h1>@yield('title')</h1>
-    @yield('main')
+    <main>
+        @yield('main')
+    </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,7 +1,7 @@
 @extends('layouts.tmp')
+@section('title','サークル管理')
 @section('main')
 
-<h1>サークル管理</h1>
 <form action="/club/create" method="get">
 <table class="table-bordered">
     <tr><th>サークル名</th><th><input name="club_name" type="text"></th></tr>

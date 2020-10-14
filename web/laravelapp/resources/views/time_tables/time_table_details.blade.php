@@ -6,6 +6,7 @@
 <form action="/time_table/details" method="post">
     <input type="hidden" name="time_id" value="{{$time_table->id}}">
     @csrf
+    <div class="scroll"> 
     <table class="table table-bordered" style="table-layout: fixed;">
         <thead>
             <tr class="table-secondary">
@@ -83,6 +84,7 @@
             @endfor
         </tbody>
     </table>
+    </div>
     <input type="hidden" name="time_num" value="{{ $time_table->time_num }}">
     <input type="text" class="text-left border" name="message" value="{{ $time_table->message }}" maxlength="10000">
     <input type="submit">

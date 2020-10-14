@@ -1,0 +1,19 @@
+main {
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+table {
+    width: auto !important;
+}
+
+td.text-nowrap {
+    height: 80px !important;
+}
+
+@media screen and (max-width: 640px) {
+    .scroll {
+        overflow-x: auto;
+    }
+}

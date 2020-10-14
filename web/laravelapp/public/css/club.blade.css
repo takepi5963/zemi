@@ -1,13 +1,3 @@
-main {
-    margin-top: 2%;
-    margin-left: 3%;
-    margin-right: 3%;
-}
-
-table, th, td {
-    width: auto !important;
-}
-
 table.club {
     border: solid 1px gray;
     display: inline-block;
@@ -15,18 +5,4 @@ table.club {
 
 table.club  td {
     border: solid 1px gray;
-}
-
-@media screen and (max-width: 640px) {
-    .scroll {
-        overflow-x: auto;
-    }
-    table { 
-        min-width: 640px;
-        margin: 0 10px 50px;
-    }
-    table td {
-        border-top: solid 1px #ccc;
-        border-bottom: solid 1px #ccc;
-    }
 }

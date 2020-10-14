@@ -15,6 +15,7 @@
 </form>
 </p>
 
+<div class="scroll">
 <table class="table table-bordered" style="table-layout: fixed;">
 <thead>
     <tr class="table-secondary">
@@ -73,5 +74,6 @@
     @endfor
 </tbody>
 </table>
+</div>
 <p class="text-left border">{{ $time_table->message }}</p>                 
 @endsection

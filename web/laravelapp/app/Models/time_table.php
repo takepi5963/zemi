@@ -27,7 +27,7 @@ class time_table extends Model
     }
     
     public function scope_start_date($query,$str){
-        return $query->where('start_day', '>',$str)->get();
+        return $query->where('start_day', '=>',$str)->get();
     }
     
     public function scope_end_date($query,$str){

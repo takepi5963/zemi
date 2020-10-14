@@ -21,7 +21,7 @@ class RequestController extends Controller
                 $time_table = time_table::_id($request->time_id);
             }else{
                 $date=date("Y/m/d");
-                $time_table = time_table::_start_date($date)->first();
+                $time_table = time_table::orderBy('start_day','desc')->first();
             }
             $time_details = time_details::_date($time_table->id)->get();
             $request_table = new request_table;

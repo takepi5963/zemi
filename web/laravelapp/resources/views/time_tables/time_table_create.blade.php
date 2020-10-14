@@ -23,7 +23,7 @@
 <textarea maxlength="100000" name="message" id="exampleFormControlTextarea1" class="form-control" rows="10"></textarea>
 </div>
 
-<input type="button" value="確定" id="create_button">
+<input type="button" value="確定" class="btn btn-secondary" id="create_button">
 
 <hr>
 <div id="time_list"></div>
@@ -42,7 +42,7 @@
             '</p>';
         }
         time_list.innerHTML=html_text+
-        '<input type="submit" value="作成">';
+        '<input type="submit" class="btn btn-secondary" value="作成">';
         // alert(html_text);
     };
 </script>

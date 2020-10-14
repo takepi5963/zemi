@@ -20,7 +20,7 @@
         <td class="text-nowrap">
             <form action="/time_table/details" method="get">
                 <input type="hidden" name="time_id" value="{{$time_table_one->id}}">
-                <input type="submit" value="詳細" name="" id="">
+                <input type="submit" value="詳細" class="btn btn-secondary" name="" id="">
             </form>
         </td>
     </tr>
@@ -30,6 +30,6 @@
 
 <hr>
 <form action="/time_table/create" method="get">
-    <input type="submit" value="作成">
+    <input type="submit" value="時間割作成" class="btn btn-secondary">
 </form>
 @endsection

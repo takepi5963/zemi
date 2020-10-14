@@ -26,8 +26,16 @@
                 <th scope="row">
                 <select name="start_time_h[]" id="selectedate-h">
                 <?php
-                $start_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[0];
-                $start_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[1];
+                try{
+                    $start_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[0];
+                }catch(Exception $e){
+                    $start_h=array(0,0);
+                }
+                try{
+                    $start_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[1];
+                }catch(Exception $e){
+                    $start_m=array(0,0);
+                }
                 ?>
                     @for($h=0;$h<24;$h++)
                         @if($h==$start_h)
@@ -49,8 +57,16 @@
                     ～
                 <select name="end_time_h[]" id="selectedate-h">
                 <?php
-                $end_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[0];
-                $end_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[1];
+                    try{
+                        $end_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[0];
+                    }catch(Exception $e){
+                        $end_h=array(0,0);
+                    }
+                    try{
+                        $end_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[1];
+                    }catch(Exception $e){
+                        $end_m=array(0,0);
+                    }
                 ?>
                     @for($h=0;$h<24;$h++)
                         @if($h==$end_h)

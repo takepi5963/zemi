@@ -22,6 +22,9 @@ Route::get('/login', 'LoginController@login')->middleware('auth.basic');
 
 Route::get('/home', 'HomeController@home_view');
 
+Route::get('/chat', 'ChatController@chat_view')->name('chat');
+Route::post('/chat', 'ChatController@chat_insert');
+
 Route::get('/time_table','TimeTableController@time_table_view');
 Route::get('/time_table/details','TimeTableController@time_table_details');
 Route::post('/time_table/details','TimeTableController@time_table_details_update');

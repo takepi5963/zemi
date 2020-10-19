@@ -67,6 +67,14 @@
             </form>
         @endif
             </li>
+            <li class="list-group-item">
+                <form action="/chat" method="GET">
+                    <input type="submit" value="掲示板" class="btn btn-secondary">
+                    <input type="hidden" name="time_id" value="{{$time_table->id}}">
+                    <input type="hidden" name="time_no" value="{{$time_cnt}}">
+                    <input type="hidden" name="week" value="{{$week_cnt}}">
+                </form>
+            </li>
         </ul>
         </td>          
         @endfor  

@@ -98,11 +98,16 @@
                 @endfor  
             </tr>
             @endfor
+            <tr>
+                <td>補足情報</td>
+                <td colspan='7'>
+                    <input type="text" class="form-control text-left border" name="message" value="{{ $time_table->message }}" maxlength="10000">
+                </td>
+            </tr>
         </tbody>
     </table>
     </div>
     <input type="hidden" name="time_num" value="{{ $time_table->time_num }}">
-    <input type="text" class="text-left border" name="message" value="{{ $time_table->message }}" maxlength="10000">
-    <input type="submit">
+    <input type="submit" class="btn btn-secondary" value="変更">
 </form>
     @endsection

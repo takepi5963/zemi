@@ -80,8 +80,11 @@
         @endfor  
     </tr>
     @endfor
+    <tr>
+        <td>補足情報</td>
+        <td colspan='7'>{{ $time_table->message }}</td>
+    </tr>
 </tbody>
 </table>
-</div>
-<p class="text-left border">{{ $time_table->message }}</p>                 
+</div>  
 @endsection

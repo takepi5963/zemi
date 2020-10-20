@@ -20,7 +20,7 @@
 
 <div class="col-sm">
 <label for="exampleFormControlTextarea1">補足説明:</label>
-<textarea maxlength="100000" name="message" id="exampleFormControlTextarea1" class="form-control" rows="10"></textarea>
+<textarea maxlength="100000" name="message" id="exampleFormControlTextarea1" class="form-control class="message"" rows="10"></textarea>
 </div>
 
 <input type="button" value="確定" class="btn btn-secondary" id="create_button">

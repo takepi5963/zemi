@@ -56,7 +56,7 @@
         @endfor
         <tr>
             <td>補足情報</td>
-            <td colspan='7'>{{ $time_table->message }}</td>
+            <td colspan='7' class="message">{{ $time_table->message }}</td>
         </tr>
     </tbody>
     </table>

@@ -7,12 +7,16 @@ main {
 table {
     table-layout: fixed;
     width: auto !important;
+    max-width: 8000px;
 }
 
 /* td.text-nowrap {
     height: 80px !important;
 } */
 
+.message{
+    word-break : break-all;
+}
 
 @media screen and (max-width: 750px) {
     .scroll {

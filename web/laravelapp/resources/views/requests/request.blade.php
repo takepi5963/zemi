@@ -3,6 +3,9 @@
 @section('main')
 <p>期間 
 <form action="/request" method="get" onchange="submit(this.form);">
+    @if($error=='true')
+        <p class="text-danger"> 申し込みが上限を超えています。</p>
+    @endif
     <select name="time_id" id="">
         @foreach($time_table->all() as $time_table_record)
             @if($time_table->id == $time_table_record->id)
@@ -82,9 +85,9 @@
     @endfor
     <tr>
         <td>補足情報</td>
-        <td colspan='7'>{{ $time_table->message }}</td>
+        <td colspan='7' class="message">{{ $time_table->message }}</td>
     </tr>
 </tbody>
 </table>
-</div>  
+</div>
 @endsection

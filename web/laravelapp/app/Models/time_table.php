@@ -15,7 +15,8 @@ class time_table extends Model
         'time_num'=>'required|integer',
         'start_day'=>'date|required',
         'end_day'=>'date|required',
-        'message'=>'string|required'
+        'message'=>'string|required',
+        'request_limit'=>'integer'
     );
 
     public function scope_id($query,$str){

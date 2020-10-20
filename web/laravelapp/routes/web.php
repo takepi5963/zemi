@@ -27,6 +27,7 @@ Route::post('/chat', 'ChatController@chat_insert');
 
 Route::get('/time_table','TimeTableController@time_table_view');
 Route::get('/time_table/details','TimeTableController@time_table_details');
+Route::get('/time_table/details/delete','TimeTableController@time_table_delete');
 Route::post('/time_table/details','TimeTableController@time_table_details_update');
 Route::get('/time_table/create','TimeTableController@time_table_create_details');
 Route::post('/time_table/create','TimeTableController@time_table_create');

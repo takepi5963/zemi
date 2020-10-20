@@ -1,5 +1,5 @@
 @extends('layouts.tmp')
-@section('title','希望申し込み')
+@section('title','時間割詳細画面')
 @section('main')
 <p>期間 {{$time_table->start_day}} ～ {{$time_table->end_day}}</p>
 
@@ -109,5 +109,10 @@
     </div>
     <input type="hidden" name="time_num" value="{{ $time_table->time_num }}">
     <input type="submit" class="btn btn-secondary" value="変更">
+</form>
+<hr>
+<form action="/time_table/details/delete">
+    <input type="submit" value="削除" class="btn btn-danger">
+    <input type="hidden" value="{{$time_table->id}}" name="time_id">
 </form>
     @endsection

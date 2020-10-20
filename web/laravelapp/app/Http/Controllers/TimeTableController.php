@@ -88,4 +88,11 @@ class TimeTableController extends Controller
         time_table::where("id",$request->time_id)->first()->update(['message'=>$request->message]);
         return redirect('/time_table');
     }
+
+    public function time_table_delete(Request $request){
+        $table=time_table::where('id',$request->time_id)->first();
+        $table->delete();
+        return redirect('/time_table');
+    }
+
 }

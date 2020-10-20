@@ -1,13 +1,16 @@
 drop table request_table;
 drop table time_details;
+drop table chat;
 drop table club;
 drop table time_table;
+
 
 create table time_table (
     id int auto_increment primary key,
     time_num int,
     start_day date,
     end_day date,
+    request_limit int,
     message varchar(10000)
     );
 
@@ -65,5 +68,3 @@ create table request_table (
         on delete cascade
         on update cascade
     );
-
-

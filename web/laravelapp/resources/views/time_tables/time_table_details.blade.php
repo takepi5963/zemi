@@ -21,61 +21,70 @@
             </tr>
         </thead>
         <tbody>
+            {{--時間の数だけ繰り返す--}}
             @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
             <tr>
                 <th scope="row">
-                <select name="start_time_h[]" id="selectedate-h">
                 <?php
                 try{
-                    $start_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[0];
+                    //開始時間を代入
+                    $start_h=explode(":",$start_end_time['start_time'][$time_cnt-1])[0];
                 }catch(Exception $e){
                     $start_h=array(0,0);
                 }
                 try{
-                    $start_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->start_time)[1];
+                    //開始分を代入
+                    $start_m=explode(":",$start_end_time['start_time'][$time_cnt-1])[1];
                 }catch(Exception $e){
                     $start_m=array(0,0);
                 }
                 ?>
+                {{--デフォルトの値の設定（時間）--}}
+                <select name="start_time_h[]" id="selectedate-h">
                     @for($h=0;$h<24;$h++)
-                        @if($h==$start_h)
-                        <option selected value="{{$h}}">{{$h}}</option>
-                        @else
-                        <option value="{{$h}}">{{$h}}</option>
-                        @endif
+                    @if($h==$start_h)
+                    <option selected value="{{$h}}">{{$h}}</option>
+                    @else
+                    <option value="{{$h}}">{{$h}}</option>
+                    @endif
                     @endfor
                 </select>
+                {{--デフォルトの値の設定（分）--}}
                 <select name="start_time_m[]" id="selectedate-m">
                     @for($m=0;$m<60;$m++)
-                        @if($m==$start_m)
-                            <option selected value="{{$m}}">{{$m}}</option>
-                        @else
-                            <option value="{{$m}}">{{$m}}</option>
-                        @endif
+                    @if($m==$start_m)
+                    <option selected value="{{$m}}">{{$m}}</option>
+                    @else
+                    <option value="{{$m}}">{{$m}}</option>
+                    @endif
                     @endfor
                 </select>
-                    ～
-                <select name="end_time_h[]" id="selectedate-h">
+                ～
                 <?php
                     try{
-                        $end_h=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[0];
+                        //終了時間を代入
+                        $end_h=explode(":",$start_end_time['end_time'][$time_cnt-1])[0];
                     }catch(Exception $e){
                         $end_h=array(0,0);
                     }
                     try{
-                        $end_m=explode(":",$time_details->where("time_no",$time_cnt)->first()->end_time)[1];
+                        //終了分を代入
+                        $end_m=explode(":",$start_end_time['end_time'][$time_cnt-1])[1];
                     }catch(Exception $e){
                         $end_m=array(0,0);
                     }
-                ?>
+                    ?>
+                {{--デフォルトの値の設定（時間）--}}
+                <select name="end_time_h[]" id="selectedate-h">
                     @for($h=0;$h<24;$h++)
-                        @if($h==$end_h)
-                        <option selected value="{{$h}}">{{$h}}</option>
-                        @else
-                        <option value="{{$h}}">{{$h}}</option>
-                        @endif
+                    @if($h==$end_h)
+                    <option selected value="{{$h}}">{{$h}}</option>
+                    @else
+                    <option value="{{$h}}">{{$h}}</option>
+                    @endif
                     @endfor
                 </select>
+                {{--デフォルトの値の設定（分）--}}
                 <select name="end_time_m[]" id="selectedate-m">
                     @for($m=0;$m<60;$m++)
                         @if($m==$end_m)
@@ -88,10 +97,10 @@
                 </th>
                 @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
                 <td class="text-nowrap">
-                    @foreach($request_table->where("time_id",$time_table->id)->where("time_no",$time_cnt)->where("week",$week_cnt)->get() as $request_record)
+                    @foreach($request_list[$time_cnt][$week_cnt] as $request_record)
                     <p>
                         <input type="radio" name="time_details[{{$time_cnt}}][{{$week_cnt }}]" value="{{$request_record->club_id}}">
-                        <label for="time_details[{{$time_cnt}}][{{$week_cnt }}]">{{$time_details[0]->club_name($request_record->club_id)}}</label>
+                        <label for="time_details[{{$time_cnt}}][{{$week_cnt }}]">{{$club_list[$request_record->club_id]}}</label>
                     </p>
                     @endforeach
                 </td>          

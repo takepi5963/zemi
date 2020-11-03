@@ -1,6 +1,11 @@
 @extends('layouts.tmp')
 @section('title','時間割作成画面')
 @section('main')
+
+@foreach ($errors->all() as $error)
+<p class="text-danger">{{ $error }}</p>
+@endforeach
+
 <form action="/time_table/create" method="post">
 @csrf
 

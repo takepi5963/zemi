@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class time_table extends Model
 {
     //
-    protected $table = 'time_table';
+    protected $table = 'time';
     protected $guarded=array('id');
-    public $timestamps = false;
 
     public static $rules = array(
         'time_num'=>'required|integer',
         'start_day'=>'date|required',
         'end_day'=>'date|required',
-        'message'=>'string|required',
-        'request_limit'=>'integer'
+        'message'=>'nullable|string',
+        'request_limit'=>'integer|required',
+        'start_time.*'=>'required',
+        'end_time.*'=>'required'
+
     );
 
     public function scope_id($query,$str){
@@ -28,10 +30,10 @@ class time_table extends Model
     }
     
     public function scope_start_date($query,$str){
-        return $query->where('start_day', '=>',$str)->get();
+        return $query->where('start_day', '=>',$str);
     }
     
     public function scope_end_date($query,$str){
-        return $query->where('end_day', '<',$str)->get();
+        return $query->where('end_day', '<',$str);
     }
 }

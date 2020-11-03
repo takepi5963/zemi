@@ -12,14 +12,14 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($time_table::all() as $time_table_one)
+    @foreach($time_table as $time_table_record)
     <tr>
-        <td class="text-nowrap">{{$time_table_one->id}}</td>
-        <td class="text-nowrap">{{$time_table_one->start_day}}</td>
-        <td class="text-nowrap">{{$time_table_one->end_day}}</td>
+        <td class="text-nowrap">{{$time_table_record->id}}</td>
+        <td class="text-nowrap">{{$time_table_record->start_day}}</td>
+        <td class="text-nowrap">{{$time_table_record->end_day}}</td>
         <td class="text-nowrap">
             <form action="/time_table/details" method="get">
-                <input type="hidden" name="time_id" value="{{$time_table_one->id}}">
+                <input type="hidden" name="time_id" value="{{$time_table_record->id}}">
                 <input type="submit" value="詳細" class="btn btn-secondary" name="" id="">
             </form>
         </td>

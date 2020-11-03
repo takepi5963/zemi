@@ -4,7 +4,7 @@
 <p>期間
     <form action="/home" method="get" onchange="submit(this.form);">
         <select name="time_id" id="">
-        @foreach($time_table->all() as $time_table_record)
+        @foreach($time_table_list as $time_table_record)
             @if($time_table->id == $time_table_record->id)
             <option value="{{$time_table_record->id}}" selected>{{ $time_table_record->start_day }} ~ {{ $time_table_record->end_day }}</option>
             @else
@@ -32,24 +32,13 @@
         @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
         <tr>
             <th scope="row">
-            <?php
-             foreach($time_details as $time_detail){    
-                 if($time_cnt==$time_detail->time_no){
-                     echo($time_detail->start_time." ～ ".$time_detail->end_time);
-                    break;
-                }
-            }
-             ?>
+             {{$start_end_time['start_time'][$time_cnt-1]}}~{{$start_end_time['end_time'][$time_cnt-1]}}
             </th>
             @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
             <td class="text-nowrap">
-                @foreach($time_details as $time_detail)
-                    @if($time_cnt==$time_detail->time_no&&$week_cnt==$time_detail->week)
-                        @if($time_detail->club_id!=null)
-                            {{$time_detail->club_name($time_detail->club_id)}}
-                        @endif
-                    @endif
-                @endforeach
+                @if(isset($time_details_list[$time_cnt][$week_cnt]->club_id))
+                {{  $club_list[$time_details_list[$time_cnt][$week_cnt]->club_id]    }}
+                @endif
             </td>          
             @endfor        
         </tr>

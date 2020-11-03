@@ -36,47 +36,34 @@
     @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
     <tr>
         <th scope="row">
-        <?php
-             foreach($time_details as $time_detail){    
-                 if($time_cnt==$time_detail->time_no){
-                     echo($time_detail->start_time." ～ ".$time_detail->end_time);
-                    break;
-                }
-            }
-             ?>
+            {{$start_end_time['start_time'][$time_cnt-1]}}～{{$start_end_time['start_time'][$time_cnt-1]}}
         </th>
         @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
         <td class="text-nowrap">
         <ul class="list-group" style="max-width: 400px;">
-            @foreach($request_table->array_request($time_table->id,$time_cnt,$week_cnt,$club_id) as $request)
-                        <li class="list-group-item">{{$time_detail->club_name($request->club_id)}}</li>
+            <?php $applied_flg=false; ?>
+            @foreach($request_list[$time_cnt][$week_cnt] as $request_record)
+                        <li class="list-group-item">{{$club_list[$request_record->club_id]}}</li>
+                        @if ($club_id==$request_record->club_id)
+                            <?php $applied_flg=true; ?>
+                        @endif
             @endforeach
             <li class="list-group-item">
-        @if($request_table->bool_request($time_table->id,$time_cnt,$week_cnt,$club_id))
-            <form action="request/insert">
-            <input type="hidden" name="time_id" value="{{$time_table->id}}">
-            <input type="hidden" name="time_no" value="{{$time_cnt}}">
-            <input type="hidden" name="week" value="{{$week_cnt}}">
-            <input type="hidden" name="club_id" value="{{$club_id}}">
-            <input type="submit" class="btn btn-dark mt-1" value="申し込み" name="" id="">
-            </form>
-        @else
+        @if($applied_flg)
             <form action="request/delete">
-            <input type="hidden" name="time_id" value="{{$time_table->id}}">
-            <input type="hidden" name="time_no" value="{{$time_cnt}}">
-            <input type="hidden" name="week" value="{{$week_cnt}}">
-            <input type="hidden" name="club_id" value="{{$club_id}}">
-            <input type="submit" class="btn btn-outline-dark mt-1" value="申し込み解除" name="" id="">
+                <input type="hidden" name="time_details_id" value="{{$time_details_list[$time_cnt][$week_cnt]->id}}">
+                <input type="hidden" name="time_id" value="{{$time_table->id}}">
+                <input type="hidden" name="club_id" value="{{$club_id}}">
+                <input type="submit" class="btn btn-outline-dark mt-1" value="申し込み解除" name="" id="">
+            </form>
+            @else
+            <form action="request/insert">
+                <input type="hidden" name="time_details_id" value="{{$time_details_list[$time_cnt][$week_cnt]->id}}">
+                <input type="hidden" name="time_id" value="{{$time_table->id}}">
+                <input type="hidden" name="club_id" value="{{$club_id}}">
+                <input type="submit" class="btn btn-dark mt-1" value="申し込み" name="" id="">
             </form>
         @endif
-            </li>
-            <li class="list-group-item">
-                <form action="/chat" method="GET">
-                    <input type="submit" value="掲示板" class="btn btn-secondary">
-                    <input type="hidden" name="time_id" value="{{$time_table->id}}">
-                    <input type="hidden" name="time_no" value="{{$time_cnt}}">
-                    <input type="hidden" name="week" value="{{$week_cnt}}">
-                </form>
             </li>
         </ul>
         </td>          

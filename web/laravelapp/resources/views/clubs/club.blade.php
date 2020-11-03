@@ -2,6 +2,11 @@
 @section('title','サークル管理')
 @section('main')
 
+@foreach ($errors->all() as $error)
+<p class="text-danger">{{ $error }}</p>
+@endforeach
+
+
 <form action="/club/create" method="get">
 <table class="table-bordered">
     <tr><th>サークル名</th><th><input name="club_name" type="text"></th></tr>

@@ -13,17 +13,19 @@ class HomeController extends Controller
     public function home_view(Request $request){
         try{
             if(isset($request->time_id)){
-                $time_table = time_table::_id($request->time_id);
+                $time_table = time_table::find($request->time_id);
+                $time_id=$request->time_id;
             }else{
-                $date=date("Y/m/d");
-                $time_table = time_table::_date($date)->first();
-                if(!(isset($time_table->id))){
-                    $time_table = time_table::first();
-                }
+                $time_table = time_table::orderBy('start_day','desc')->first();
+                $time_id = $time_table->id;
             }
-            $time_details = time_details::_date($time_table->id)->get();
+            
+            $time_table_list = time_table::orderBy('start_day','desc')->get();
+            $club_list=club::_club_list();
+            $start_end_time=time_details::_time_id($time_id)->_start_end_time(['time_id'=>$time_id]);
+            $time_details_list=time_details::_time_details_list($time_id);
 
-            return view('home',compact('time_table','time_details'));
+            return view('home',compact('time_table','time_table_list','time_details_list','club_list','start_end_time'));
         }catch(\Exception $e){
             $title="Home";
             return view("not_found_time_table",compact('title'));

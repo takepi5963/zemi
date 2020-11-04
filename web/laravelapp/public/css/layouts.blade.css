@@ -1,4 +1,4 @@
-h1 {
+/* h1 {
     white-space: nowrap;
     display: inline-block;
     padding: 0.2em 0.5em;
@@ -8,19 +8,19 @@ h1 {
     background: #FFF;
     border: solid 3px #6091d3;
     border-radius: 10px;
-}
+} */
 
-body {
+/* body {
    background-image: url("../img/b054.jpg"); 
-} 
+}  */
 
-main {
+/* main {
     background-color: #ffffff; margin: 2% 2%; padding: 1% 3%;
     border: solid 3px #6091d3;
     border-radius: 10px;
     border-bottom: solid 6px #5182c4;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32); 
-}
+} */
 
 table {
     table-layout: fixed;

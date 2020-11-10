@@ -43,12 +43,7 @@ class RequestController extends Controller
     public function request_insert(Request $request){
         // print_r($request["time_id"]);
         $request_limit=time_table::find($request->time_id)->request_limit; //希望申し込み上限
-        print_r(
-            request_table::leftjoin('time_details','request.time_details_id','=','time_details.id')
-            ->where('time_id',$request->time_id)
-            ->count()
-        );
-        if(request_table::leftjoin('time_details','request.time_details_id','=','time_details.id')->where('time_id',$request->time_id)->count()>=$request_limit){
+        if(request_table::leftjoin('time_details','request.time_details_id','=','time_details.id')->where('time_id',$request->time_id)->where('request.club_id',$request->club_id)->count()>=$request_limit){
             return redirect('/request?error=true');
         }else{
             $this->validate($request,request_table::$rules);
@@ -64,7 +59,7 @@ class RequestController extends Controller
 
     //希望申し込み削除
     public function request_remove(Request $request){
-        request_table::_time_id($request->time_details_id)->delete();
+        request_table::_time_id($request->time_details_id)->_club_id($request->club_id)->delete();
         return redirect('/request');
     }
 }

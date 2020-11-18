@@ -17,8 +17,12 @@ class RequestController extends Controller
         if($request->error=='true'){
             $error='true';
         }
-        //ここのクラブIDを動的なものとする
-        $club_id=1;
+
+        if('club_leader'!=session()->get('Authority')){
+            return redirect('/home');
+        }
+
+        $club_id = session()->get('club_id');
         try{
             if(isset($request->time_id)){
                 $time_table = time_table::find($request->time_id);

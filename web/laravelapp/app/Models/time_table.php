@@ -16,8 +16,10 @@ class time_table extends Model
         'end_day'=>'date|required',
         'message'=>'nullable|string',
         'request_limit'=>'integer|required',
-        'start_time.*'=>'required',
-        'end_time.*'=>'required'
+        'start_time_h.*'=>'required',
+        'start_time_m.*'=>'required',
+        'end_time_h.*'=>'required',
+        'end_time_m.*'=>'required'
 
     );
 

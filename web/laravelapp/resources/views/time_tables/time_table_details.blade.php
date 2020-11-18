@@ -41,7 +41,7 @@
                 ?>
                 {{--デフォルトの値の設定（時間）--}}
                 <select name="start_time_h[]" id="selectedate-h">
-                    @for($h=0;$h<24;$h++)
+                    @for($h=5;$h<23;$h++)
                     @if($h==$start_h)
                     <option selected value="{{$h}}">{{$h}}</option>
                     @else
@@ -51,7 +51,7 @@
                 </select>
                 {{--デフォルトの値の設定（分）--}}
                 <select name="start_time_m[]" id="selectedate-m">
-                    @for($m=0;$m<60;$m++)
+                    @for($m=0;$m<60;$m+=10)
                     @if($m==$start_m)
                     <option selected value="{{$m}}">{{$m}}</option>
                     @else
@@ -76,7 +76,7 @@
                     ?>
                 {{--デフォルトの値の設定（時間）--}}
                 <select name="end_time_h[]" id="selectedate-h">
-                    @for($h=0;$h<24;$h++)
+                    @for($h=5;$h<23;$h++)
                     @if($h==$end_h)
                     <option selected value="{{$h}}">{{$h}}</option>
                     @else
@@ -86,7 +86,7 @@
                 </select>
                 {{--デフォルトの値の設定（分）--}}
                 <select name="end_time_m[]" id="selectedate-m">
-                    @for($m=0;$m<60;$m++)
+                    @for($m=0;$m<60;$m+=10)
                         @if($m==$end_m)
                             <option selected value="{{$m}}">{{$m}}</option>
                         @else
@@ -97,12 +97,16 @@
                 </th>
                 @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
                 <td class="text-nowrap">
+                    @if (count($request_list[$time_cnt][$week_cnt])>0)
                     @foreach($request_list[$time_cnt][$week_cnt] as $request_record)
                     <p>
                         <input type="radio" name="time_details[{{$time_cnt}}][{{$week_cnt }}]" value="{{$request_record->club_id}}">
                         <label for="time_details[{{$time_cnt}}][{{$week_cnt }}]">{{$club_list[$request_record->club_id]}}</label>
                     </p>
                     @endforeach
+                    @else
+                    <p class="null"></p>
+                    @endif
                 </td>          
                 @endfor  
             </tr>
@@ -110,7 +114,7 @@
             <tr>
                 <td>補足情報</td>
                 <td colspan='7'>
-                    <input type="text" class="form-control text-left border" name="message" value="{{ $time_table->message }}" maxlength="10000">
+                    <input type="text" class="form-control text-left border" name="message" value="{{ $time_table->message }}" row='10' maxlength="10000">
                 </td>
             </tr>
         </tbody>

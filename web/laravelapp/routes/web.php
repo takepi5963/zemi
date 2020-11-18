@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', function () { return view('login');});
 
-Route::get('/login', 'LoginController@login')->middleware('auth.basic');
+Route::post('/login/check', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
 
 Route::get('/home', 'HomeController@home_view');
+Route::get('/', 'HomeController@home_view');
 
 Route::get('/chat', 'ChatController@chat_view')->name('chat');
 Route::post('/chat', 'ChatController@chat_insert');

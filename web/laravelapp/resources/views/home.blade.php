@@ -1,5 +1,5 @@
 @extends('layouts.tmp')
-@section('title','Home')
+@section('title','体育館時間割')
 @section('main')
 <p>期間
     <form action="/home" method="get" onchange="submit(this.form);">
@@ -32,19 +32,21 @@
         @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
         <tr>
             <th scope="row">
-             {{$start_end_time['start_time'][$time_cnt-1]}}~{{$start_end_time['end_time'][$time_cnt-1]}}
+             {{date('H:i', strtotime($start_end_time['start_time'][$time_cnt-1]))}}~{{date('H:i', strtotime($start_end_time['end_time'][$time_cnt-1]))}}
             </th>
             @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
             <td class="text-nowrap">
                 @if(isset($time_details_list[$time_cnt][$week_cnt]->club_id))
                 {{  $club_list[$time_details_list[$time_cnt][$week_cnt]->club_id]    }}
+                @else
+                <p class="null"></p>
                 @endif
             </td>          
             @endfor        
         </tr>
         @endfor
         <tr>
-            <td>補足情報</td>
+            <td >補足情報</td>
             <td colspan='7' class="message">{{ $time_table->message }}</td>
         </tr>
     </tbody>

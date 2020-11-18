@@ -26,19 +26,30 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    @if(session()->get('Authority')!=null)
+                    @if (session()->get('Authority')=='club_leader')
                     <li class="nav-item">
                         <a class="nav-link" href="/request">希望申し込み</a>
                     </li>
+                    @elseif(session()->get('Authority')=='admin')
                     <li class="nav-item">
                         <a class="nav-link" href="/time_table">時間割調整</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/club">サークル管理</a>
                     </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">ログアウト</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">ログイン</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </nav>
-
     <main> 
         <h1>@yield('title')</h1>
         @yield('main')

@@ -14,13 +14,27 @@
    background-image: url("../img/b054.jpg"); 
 }  */
 
-/* main {
-    background-color: #ffffff; margin: 2% 2%; padding: 1% 3%;
-    border: solid 3px #6091d3;
-    border-radius: 10px;
-    border-bottom: solid 6px #5182c4;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32); 
-} */
+main {
+    width: 95%;
+    margin: auto;
+}
+.logout_btn{
+    position: fixed; /* 要素の位置を固定する */
+    top: 8px; /* 基準の位置を画面の一番下に指定する */
+    right: 8px; /* 基準の位置を画面の一番右に指定する */
+}
+
+.null{
+    width: 8em;
+}
+
+.login_page{
+    width: auto;
+}
+.login_page form{
+    margin-left: 5%;
+    width: 240px;
+}
 
 table {
     table-layout: fixed;
@@ -33,7 +47,8 @@ table {
 } */
 
 .message{
-    word-break : break-all;
+    word-wrap: break-word;
+    max-width: 750px;
 }
 
 @media screen and (max-width: 750px) {

@@ -23,17 +23,17 @@
 <div class="col-sm form-group row">
         <div class="col-sm-5">
             <label for="start_day">開始日付:</label>
-            <input type="date" name="start_day" id="start_day" class="form-control d-inline">
+            <input type="date" name="start_day" id="start_day" placeholder="YYYYMMDD" class="form-control d-inline">
         </div>
         <div class="col-sm-5">
             <label for="end_day">終了日付:</label>
-            <input type="date" name="end_day" id="end_day" class="form-control d-inline">
+            <input type="date" name="end_day" id="end_day" placeholder="YYYYMMDD" class="form-control d-inline">
         </div>
 </div>
 
 <div class="col-sm">
 <label for="exampleFormControlTextarea1">補足説明:</label>
-<textarea maxlength="100000" name="message" id="exampleFormControlTextarea1" class="form-control message" rows="10"></textarea>
+<textarea maxlength="100000" name="message" id="exampleFormControlTextarea1" class="form-control message" rows="10" wrap="hard"></textarea>
 </div>
 
 <input type="button" value="確定" class="btn btn-secondary" id="create_button">
@@ -50,9 +50,29 @@
             html_text+=
             '<p>'+
             (i+1)+'枠目：'+
-            '開始時刻<input type="time" name="start_time[]">'+
-            ' ~ 終了時刻<input type="time" name="end_time[]">'+
-            '</p>';
+            '開始時刻'+
+            '<select name="start_time_h[]">'
+            @for($h=5;$h<22;$h++)
+                +'<option value="{{$h}}">{{$h}}</option>'
+            @endfor
+            +'</select>：'
+            +'<select name="start_time_m[]">'
+            @for($m=0;$m<60;$m+=10)
+                +'<option value="{{$m}}">{{$m}}</option>'
+            @endfor
+            +'</select>'
+            +' ~ 終了時刻'
+            +'<select name="end_time_h[]">'
+            @for($h=5;$h<22;$h++)
+                +'<option value="{{$h}}">{{$h}}</option>'
+            @endfor
+            +'</select>：'
+            +'<select name="end_time_m[]">'
+            @for($m=0;$m<60;$m+=10)
+                +'<option value="{{$m}}">{{$m}}</option>'
+            @endfor
+            +'</select>'
+            +'</p>';
         }
         time_list.innerHTML=html_text+
         '<input type="submit" class="btn btn-secondary" value="作成">';

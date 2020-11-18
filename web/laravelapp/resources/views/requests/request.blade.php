@@ -36,7 +36,7 @@
     @for($time_cnt=1;$time_cnt<=$time_table->time_num;$time_cnt=$time_cnt+1)
     <tr>
         <th scope="row">
-            {{$start_end_time['start_time'][$time_cnt-1]}}～{{$start_end_time['start_time'][$time_cnt-1]}}
+            {{date('H:i', strtotime($start_end_time['start_time'][$time_cnt-1]))}}～{{date('H:i', strtotime($start_end_time['end_time'][$time_cnt-1]))}}
         </th>
         @for($week_cnt=1;$week_cnt<=7;$week_cnt=$week_cnt+1)
         <td class="text-nowrap">

@@ -12,6 +12,9 @@ class TimeTableController extends Controller
 {
     //時間割調整画面表示
     public function time_table_view(Request $request){
+        if('admin'!=session()->get('Authority')){
+            return redirect('/home');
+        }
         $time_table= time_table::all();
         return view('time_tables.time_table', compact('time_table'));
     } 
@@ -36,12 +39,16 @@ class TimeTableController extends Controller
         $time_table = new time_table;
         $form = $request->all();
         unset($form['_token']);
-        unset($form['start_time']);
-        unset($form['end_time']);
+        unset($form['start_time_h']);
+        unset($form['start_time_m']);
+        unset($form['end_time_h']);
+        unset($form['end_time_m']);
         $time_table->fill($form)->save();       
         
-        $start_time=$request->start_time;
-        $end_time=$request->end_time;
+        $start_time_h=$request->start_time_h;
+        $start_time_m=$request->start_time_m;
+        $end_time_h=$request->end_time_h;
+        $end_time_m=$request->end_time_m;
 
         //時間割詳細レコード作成
         for($cnt=1;$cnt<=$request->time_num;$cnt++){
@@ -50,8 +57,8 @@ class TimeTableController extends Controller
                 $time_details->time_id=$time_table->max('id');
                 $time_details->time_no=$cnt;
                 $time_details->week=$week;
-                $time_details->start_time=$start_time[$cnt-1];
-                $time_details->end_time=$end_time[$cnt-1];
+                $time_details->start_time=$start_time_h[$cnt-1].':'.$start_time_m[$cnt-1];
+                $time_details->end_time=$end_time_h[$cnt-1].':'.$end_time_m[$cnt-1];
                 $time_details->club_id=null;
                 $time_details->save();
             }
@@ -83,7 +90,7 @@ class TimeTableController extends Controller
         //時間割更新
         for($time_no=1;$time_no<=$request->time_num;$time_no++){
             for($week=1;$week<=7;$week++){
-                $new=array('start_time'=>$request->start_time_h[$time_no-1].':'.$request->start_time_m[$time_no-1],'end_time'=>$request->end_time_h[$time_no-1].':'.$request->end_time_h[$time_no-1]);
+                $new=array('start_time'=>$request->start_time_h[$time_no-1].':'.$request->start_time_m[$time_no-1],'end_time'=>$request->end_time_h[$time_no-1].':'.$request->end_time_m[$time_no-1]);
                 // print_r($new);
                 time_details::_time_id($request->time_id)
                 ->_time_no($time_no)

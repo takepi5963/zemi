@@ -1,5 +1,5 @@
 @extends('layouts.tmp')
-@section('title','時間割作成画面')
+@section('title','時間割調整画面')
 @section('main')
 
 <table class="table-bordered">

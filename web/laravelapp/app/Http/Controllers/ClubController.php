@@ -13,6 +13,9 @@ class ClubController extends Controller
 {
     //
     public function club_view(Request $request,Response $response){
+        if('admin'!=session()->get('Authority')){
+            return redirect('/home');
+        }
         $club=club::all();
         return view('clubs.club',compact('club'));
     }

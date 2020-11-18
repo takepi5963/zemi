@@ -15,6 +15,11 @@ class club extends Model
         'student_no'=>'required|integer'
     );
 
+    //学籍番号からサークルを検索する
+    public function scope_student_no($query,$str){
+        $query->where('student_no',$str);
+    }
+
     //IDとサークル名を返す
     public function scope_club_list($query){
         $result=array();

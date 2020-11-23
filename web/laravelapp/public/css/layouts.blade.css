@@ -48,7 +48,8 @@ table {
 
 .message{
     word-wrap: break-word;
-    max-width: 750px;
+    width: 100%;
+    height: 30em;
 }
 
 @media screen and (max-width: 750px) {

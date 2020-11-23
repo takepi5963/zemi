@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response; //追記
 use App\Models\club;
+use App\Models\admin;
 
 class LoginController extends Controller
 {
-    //
+    //ログイン処理
     public function login (Request $request, Response $response)
     {
-        if(substr($request->id,0,1)=='t'){
+        if(admin::_admin($request)->first()!=null){
             session()->put(['Authority'=>'admin']);
         }else{
             if(substr($request->id,0,1)=='s'){
@@ -26,6 +27,7 @@ class LoginController extends Controller
         }
         return redirect('/home');
     }
+    //ログアウト処理
     public function logout(Request $request, Response $response){
         session()->flush();
         return redirect('/login');

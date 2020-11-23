@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/club">サークル管理</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">管理者情報更新</a>
+                    </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">ログアウト</a>

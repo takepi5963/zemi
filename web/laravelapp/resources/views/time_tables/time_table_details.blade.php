@@ -113,8 +113,8 @@
             @endfor
             <tr>
                 <td>補足情報</td>
-                <td colspan='7'>
-                    <input type="text" class="form-control text-left border" name="message" value="{{ $time_table->message }}" row='10' maxlength="10000">
+                <td colspan='7' >
+                    <textarea type="text"  class="message" class="form-control text-left border" name="message" rows='10' maxlength="10000">{{ $time_table->message }}</textarea>
                 </td>
             </tr>
         </tbody>

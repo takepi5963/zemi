@@ -9,7 +9,6 @@
 <form action="/time_table/create" method="post">
 @csrf
 
-<div class="col-sm form-group row">
     <div class="col-sm-3">
     <label for="time_num" class="text-nowrap">一日当たりの時間数:</label>
     <input type="number" min="1" name="time_num" id="time_num" value="4" class="form-control d-inline">
@@ -18,9 +17,7 @@
     <label for="request_limit" class="text-nowrap">希望申し込みの上限:</label>
     <input type="number" min="1" name="request_limit" id="request_limit" value="5" class="form-control d-inline">
     </div>
-</div>
 
-<div class="col-sm form-group row">
         <div class="col-sm-5">
             <label for="start_day">開始日付:</label>
             <input type="date" name="start_day" id="start_day" placeholder="YYYYMMDD" class="form-control d-inline">
@@ -29,7 +26,6 @@
             <label for="end_day">終了日付:</label>
             <input type="date" name="end_day" id="end_day" placeholder="YYYYMMDD" class="form-control d-inline">
         </div>
-</div>
 
 <div class="col-sm">
 <label for="exampleFormControlTextarea1">補足説明:</label>

@@ -15,8 +15,8 @@ class admin extends Model
     ];
  
     public static $rules = array(
-        'login_id'=>'required|string',
-        'password'=>'required|string'
+        'login_id'=>'required|string|max:20',
+        'password'=>'required|string|max:20'
     );
 
     public function scope_admin($query,$str){

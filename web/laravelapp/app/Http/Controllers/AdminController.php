@@ -12,7 +12,8 @@ class AdminController extends Controller
         if('admin'!=session()->get('Authority')){
             return redirect('/home');
         }
-        return view('/admin');
+        $validate_flg=false;
+        return view('/admin',compact('validate_flg'));
     }
     public function admin_update(Request $request){
         $this->validate($request, admin::$rules);
@@ -21,6 +22,7 @@ class AdminController extends Controller
         unset($form['_token']);
         $admin->timestamps = false;    // 追記
         $admin->fill($form)->save();
-        return redirect('/admin'); //変更
+        $validate_flg=true;
+        return view('/admin',compact('validate_flg')); //変更
     }
 }

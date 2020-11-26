@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Middleware\TestMiddleware;
+use App\Http\Middleware\LoginMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () { return view('login');});
-
-Route::post('/login/check', 'LoginController@login');
-Route::get('/logout', 'LoginController@logout');
 
 Route::get('/admin', 'AdminController@admin_view');
 Route::post('/admin', 'AdminController@admin_update');

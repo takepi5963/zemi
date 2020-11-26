@@ -17,9 +17,6 @@
         <p>
             <input type="text" placeholder="新しいID" class="form-control" name="login_id" maxlength="20">
         </p>
-        <p>
-            <input type="password" placeholder="新しいパスワード" class="form-control" name="password" maxlength="20">
-        </p>
         <input type="submit" value="更新" class="btn btn-primary">
     </form>
 </div>

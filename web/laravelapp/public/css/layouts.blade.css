@@ -31,8 +31,7 @@ main {
 .login_page{
     width: auto;
 }
-.login_page form{
-    margin-left: 5%;
+.login_page form{   
     width: 240px;
 }
 

@@ -42,13 +42,6 @@
                         <a class="nav-link" href="/admin">管理者情報更新</a>
                     </li>
                     @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">ログアウト</a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">ログイン</a>
-                    </li>
                     @endif
                 </ul>
             </div>

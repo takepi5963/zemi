@@ -14,7 +14,6 @@ class admin extends Seeder
     {
         $param=[
         'login_id'=>'admin',
-        'password'=>'pass'
         ];
         DB::table('admin')->insert($param);
     }

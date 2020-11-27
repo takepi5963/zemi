@@ -11,7 +11,6 @@ class admin extends Model
     public $timestamps = false;
     protected $fillable = [
         'login_id',
-        'password'
     ];
  
     public static $rules = array(

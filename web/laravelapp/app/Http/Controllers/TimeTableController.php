@@ -12,18 +12,18 @@ class TimeTableController extends Controller
 {
     //時間割調整画面表示
     public function time_table_view(Request $request){
-        if('admin'!=session()->get('Authority')){
-            return redirect('/home');
-        }
+
         $time_table= time_table::all();
         return view('time_tables.time_table', compact('time_table'));
     } 
     //時間割作成画面表示
     public function time_table_create_details(Request $request){
+
         return view('time_tables.time_table_create');
     } 
     //時間割詳細画面表示
     public function time_table_details(Request $request){
+
         $time_table=time_table::find($request->time_id);
         $club_list=club::_club_list();
         $start_end_time=time_details::_time_id($request->time_id)->_start_end_time(['time_id'=>$request->time_id]);

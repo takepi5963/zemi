@@ -14,30 +14,27 @@ use App\Http\Middleware\LoginMiddleware;
 |
 */
 
-
-Route::get('/admin', 'AdminController@admin_view');
-Route::post('/admin', 'AdminController@admin_update');
-
 Route::get('/home', 'HomeController@home_view');
 Route::get('/', 'HomeController@home_view');
 
-Route::get('/chat', 'ChatController@chat_view')->name('chat');
-Route::post('/chat', 'ChatController@chat_insert');
+Route::get('/admin', 'AdminController@admin_view')->middleware(LoginMiddleware::class);
+Route::post('/admin', 'AdminController@admin_update')->middleware(LoginMiddleware::class);
 
-Route::get('/time_table','TimeTableController@time_table_view');
-Route::get('/time_table/details','TimeTableController@time_table_details');
-Route::get('/time_table/details/delete','TimeTableController@time_table_delete');
-Route::post('/time_table/details','TimeTableController@time_table_details_update');
-Route::get('/time_table/create','TimeTableController@time_table_create_details');
-Route::post('/time_table/create','TimeTableController@time_table_create');
 
-Route::get('/request', 'RequestController@request_view');
-Route::get('/request/insert', 'RequestController@request_insert');
-Route::get('/request/delete', 'RequestController@request_remove');
+Route::get('/time_table','TimeTableController@time_table_view')->middleware(LoginMiddleware::class);
+Route::get('/time_table/details','TimeTableController@time_table_details')->middleware(LoginMiddleware::class);
+Route::get('/time_table/details/delete','TimeTableController@time_table_delete')->middleware(LoginMiddleware::class);
+Route::post('/time_table/details','TimeTableController@time_table_details_update')->middleware(LoginMiddleware::class);
+Route::get('/time_table/create','TimeTableController@time_table_create_details')->middleware(LoginMiddleware::class);
+Route::post('/time_table/create','TimeTableController@time_table_create')->middleware(LoginMiddleware::class);
 
-Route::get('/club', 'ClubController@club_view');
-Route::get('/club/create', 'ClubController@club_insert');
+Route::get('/request', 'RequestController@request_view')->middleware(LoginMiddleware::class);
+Route::get('/request/insert', 'RequestController@request_insert')->middleware(LoginMiddleware::class);
+Route::get('/request/delete', 'RequestController@request_remove')->middleware(LoginMiddleware::class);
 
-Route::get('/club/details', 'ClubController@club_details');
-Route::post('/club/delete', 'ClubController@club_remove');
-Route::post('/club/update', 'ClubController@club_update');
+Route::get('/club', 'ClubController@club_view')->middleware(LoginMiddleware::class);
+Route::get('/club/create', 'ClubController@club_insert')->middleware(LoginMiddleware::class);
+
+Route::get('/club/details', 'ClubController@club_details')->middleware(LoginMiddleware::class);
+Route::post('/club/delete', 'ClubController@club_remove')->middleware(LoginMiddleware::class);
+Route::post('/club/update', 'ClubController@club_update')->middleware(LoginMiddleware::class);

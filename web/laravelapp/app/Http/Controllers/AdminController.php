@@ -9,9 +9,6 @@ class AdminController extends Controller
 {
     //
     public function admin_view(){
-        if('admin'!=session()->get('Authority')){
-            return redirect('/home');
-        }
         $validate_flg=false;
         return view('/admin',compact('validate_flg'));
     }

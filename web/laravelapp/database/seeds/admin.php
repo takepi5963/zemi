@@ -12,6 +12,7 @@ class admin extends Seeder
      */
     public function run()
     {
+        //adminの部分を管理者のログインIDにしてください
         $param=[
         'login_id'=>'admin',
         ];

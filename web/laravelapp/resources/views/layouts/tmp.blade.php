@@ -26,7 +26,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    @if(session()->get('Authority')!=null)
+                    {{session()->get('Authority')}}
+                    @if(session()->get('Authority')!='user')
                     @if (session()->get('Authority')=='club_leader')
                     <li class="nav-item">
                         <a class="nav-link" href="/request">希望申し込み</a>
